@@ -1,0 +1,474 @@
+---
+// LoveLetter.astro - An interactive wax-sealed romantic letter for Briggite
+---
+
+<section class="love-letter-section" id="carta">
+  <div class="section-title-wrap">
+    <span class="sub-badge">💌 Una carta especial</span>
+    <h2 class="section-title">Solo Para Tus Ojos</h2>
+    <p class="section-desc">Hay cosas que el corazón necesita decirte con palabras sinceras...</p>
+  </div>
+
+  <div class="envelope-container">
+    <!-- Unopened Envelope View -->
+    <div class="envelope" id="envelope">
+      <div class="envelope-flap" id="envelope-flap"></div>
+      <div class="envelope-pocket"></div>
+      
+      <!-- Wax seal with heart -->
+      <button class="wax-seal" id="seal-btn" aria-label="Abrir carta de amor">
+        <span class="seal-inner">
+          <svg viewBox="0 0 24 24" class="seal-heart" fill="currentColor">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+          <span class="seal-text">Para Briggite</span>
+        </span>
+      </button>
+
+      <div class="envelope-decorations">
+        <span class="decor-stamp">❤️ Con amor</span>
+      </div>
+    </div>
+
+    <!-- The Letter Paper Content -->
+    <div class="letter-paper" id="letter-paper">
+      <button class="close-letter-btn" id="close-letter-btn" title="Guardar carta">✕</button>
+
+      <div class="letter-inner">
+        <div class="letter-header">
+          <span class="letter-date">Eternamente & Incondicionalmente</span>
+          <h3 class="letter-salutation font-script">Mi amada Briggite,</h3>
+        </div>
+
+        <div class="letter-body font-editorial">
+          <p>
+            Quería escribirte estas líneas para recordarte lo que muchas veces las palabras cotidianas no alcanzan a expresar: <strong>eres lo más hermoso y valioso que la vida me ha regalado.</strong>
+          </p>
+
+          <p>
+            Cada día a tu lado es una certeza de que el amor verdadero existe. Amo tus sonrisas inesperadas, amo la nobleza infinita de tu corazón, la dulzura de tu mirada cuando estás feliz, y esa fuerza tan increíble que tienes para salir adelante. Me inspiras y me haces querer ser mejor persona todos los días.
+          </p>
+
+          <p>
+            No hay ramo de flores en este mundo que iguale la belleza de tu esencia. En este rinconcito virtual que preparé con todo mi cariño, quiero que recuerdes siempre que <em>eres mi refugio, mi compañera de vida y mi hogar</em>.
+          </p>
+
+          <p class="letter-highlight">
+            Prometo cuidar de ti, celebrar tus victorias, abrazarte en tus momentos difíciles y amarte en cada etapa con la misma ternura y admiración con la que te amo hoy.
+          </p>
+        </div>
+
+        <div class="letter-footer">
+          <p class="font-script letter-sign">Tu novio que te ama con todo el corazón,</p>
+          <div class="signature-line">
+            <span class="signature-heart">❤️ Por siempre tuyo ❤️</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="action-wrap">
+    <button class="toggle-letter-btn" id="toggle-letter-action">
+      <span class="btn-icon">💌</span>
+      <span id="btn-text">Abrir Carta de Amor</span>
+    </button>
+  </div>
+</section>
+
+<style>
+  .love-letter-section {
+    max-width: 900px;
+    margin: 4rem auto;
+    padding: 2rem 1.5rem;
+    position: relative;
+    z-index: 10;
+  }
+
+  .section-title-wrap {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .sub-badge {
+    display: inline-block;
+    color: #ff9ebb;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-desc {
+    color: #d1b8c6;
+    font-size: 1.05rem;
+  }
+
+  .envelope-container {
+    perspective: 1200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 380px;
+    position: relative;
+  }
+
+  /* Vintage Envelope */
+  .envelope {
+    width: 340px;
+    height: 230px;
+    background: linear-gradient(135deg, #d49a6a, #bc7a49);
+    position: relative;
+    border-radius: 12px;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.6), 0 0 25px rgba(212, 154, 106, 0.2);
+    cursor: pointer;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .envelope:hover {
+    transform: translateY(-8px) scale(1.02);
+  }
+
+  .envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 170px solid transparent;
+    border-right: 170px solid transparent;
+    border-top: 130px solid #a86638;
+    transform-origin: top;
+    transition: transform 0.6s ease;
+    z-index: 4;
+  }
+
+  .envelope.open .envelope-flap {
+    transform: rotateX(180deg);
+    z-index: 1;
+  }
+
+  .envelope-pocket {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 170px solid #c98855;
+    border-right: 170px solid #c98855;
+    border-bottom: 125px solid #df9f6e;
+    border-radius: 0 0 12px 12px;
+    z-index: 5;
+    pointer-events: none;
+  }
+
+  /* Wax Seal */
+  .wax-seal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    width: 76px;
+    height: 76px;
+    background: radial-gradient(circle, #b3102c, #7a061b);
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.3), inset 0 -3px 6px rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    z-index: 7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .wax-seal:hover {
+    transform: translate(-50%, -30%) scale(1.1);
+    box-shadow: 0 8px 25px rgba(214, 25, 60, 0.6);
+  }
+
+  .seal-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #ffcad4;
+  }
+
+  .seal-heart {
+    width: 22px;
+    height: 22px;
+    fill: #ffd1dc;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));
+  }
+
+  .seal-text {
+    font-size: 0.55rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .envelope-decorations {
+    position: absolute;
+    bottom: 12px;
+    right: 16px;
+    z-index: 6;
+  }
+
+  .decor-stamp {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px dashed rgba(255, 255, 255, 0.4);
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 1px;
+  }
+
+  /* The Unfolded Paper */
+  .letter-paper {
+    position: absolute;
+    width: 100%;
+    max-width: 640px;
+    background: #fffdf7;
+    color: #2e1a29;
+    padding: 3rem 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 35px rgba(255, 182, 193, 0.3);
+    border: 1px solid #fae1dd;
+    z-index: 20;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(60px) scale(0.85);
+    transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .letter-paper.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+    position: relative;
+  }
+
+  .close-letter-btn {
+    position: absolute;
+    top: 16px;
+    right: 18px;
+    background: #ffecf2;
+    border: 1px solid #ffccd8;
+    color: #a33857;
+    font-size: 1.1rem;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+
+  .close-letter-btn:hover {
+    background: #ff5e8e;
+    color: #fff;
+  }
+
+  .letter-header {
+    border-bottom: 2px dashed #f2d2dc;
+    padding-bottom: 1.2rem;
+    margin-bottom: 1.8rem;
+    text-align: center;
+  }
+
+  .letter-date {
+    font-size: 0.85rem;
+    color: #a87d90;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+  }
+
+  .letter-salutation {
+    font-size: 2.8rem;
+    color: #9c1543;
+    margin-top: 0.4rem;
+  }
+
+  .letter-body {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: #44323c;
+  }
+
+  .letter-body p {
+    margin-bottom: 1.2rem;
+  }
+
+  .letter-body strong {
+    color: #a81c49;
+  }
+
+  .letter-highlight {
+    background: #fff0f5;
+    border-left: 4px solid #ff5e8e;
+    padding: 0.8rem 1.2rem;
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    color: #631d37;
+  }
+
+  .letter-footer {
+    margin-top: 2rem;
+    text-align: right;
+  }
+
+  .letter-sign {
+    font-size: 2.2rem;
+    color: #8c103a;
+  }
+
+  .signature-line {
+    margin-top: 0.5rem;
+  }
+
+  .signature-heart {
+    font-size: 0.95rem;
+    color: #d14975;
+    font-weight: 600;
+  }
+
+  /* Action Button Below */
+  .action-wrap {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .toggle-letter-btn {
+    background: linear-gradient(135deg, #ff5e8e, #d81b60);
+    color: #fff;
+    border: none;
+    padding: 0.9rem 2.2rem;
+    border-radius: 50px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(255, 94, 142, 0.4);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    transition: all 0.3s ease;
+  }
+
+  .toggle-letter-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 12px 30px rgba(255, 94, 142, 0.6);
+  }
+
+  @media (max-width: 640px) {
+    .letter-paper {
+      padding: 2.2rem 1.4rem;
+    }
+    .letter-salutation {
+      font-size: 2.3rem;
+    }
+    .letter-body {
+      font-size: 1.1rem;
+    }
+    .envelope {
+      width: 290px;
+      height: 200px;
+    }
+    .envelope-flap {
+      border-left: 145px solid transparent;
+      border-right: 145px solid transparent;
+      border-top: 110px solid #a86638;
+    }
+    .envelope-pocket {
+      border-left: 145px solid #c98855;
+      border-right: 145px solid #c98855;
+      border-bottom: 105px solid #df9f6e;
+    }
+  }
+</style>
+
+<script>
+  import confetti from 'canvas-confetti';
+
+  function initLoveLetter() {
+    const envelope = document.getElementById('envelope');
+    const sealBtn = document.getElementById('seal-btn');
+    const letterPaper = document.getElementById('letter-paper');
+    const closeBtn = document.getElementById('close-letter-btn');
+    const toggleBtn = document.getElementById('toggle-letter-action');
+    const btnText = document.getElementById('btn-text');
+
+    if (!envelope || !letterPaper || !btnText) return;
+
+    let isOpen = false;
+
+    function openLetter() {
+      isOpen = true;
+      envelope?.classList.add('open');
+      
+      // Heart burst
+      confetti({
+        particleCount: 50,
+        spread: 80,
+        origin: { y: 0.6 },
+        colors: ['#ff4d88', '#ff70a6', '#ffd166', '#ffffff']
+      });
+
+      setTimeout(() => {
+        envelope?.style.setProperty('display', 'none');
+        letterPaper?.classList.add('active');
+        if (btnText) btnText.textContent = 'Guardar Carta';
+      }, 500);
+    }
+
+    function closeLetter() {
+      isOpen = false;
+      letterPaper?.classList.remove('active');
+      envelope?.style.removeProperty('display');
+
+      setTimeout(() => {
+        envelope?.classList.remove('open');
+        if (btnText) btnText.textContent = 'Abrir Carta de Amor';
+      }, 100);
+    }
+
+    sealBtn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openLetter();
+    });
+
+    envelope?.addEventListener('click', openLetter);
+    closeBtn?.addEventListener('click', closeLetter);
+
+    toggleBtn?.addEventListener('click', () => {
+      if (isOpen) {
+        closeLetter();
+      } else {
+        openLetter();
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLoveLetter);
+  } else {
+    initLoveLetter();
+  }
+</script>
+

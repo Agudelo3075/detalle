@@ -1,0 +1,289 @@
+---
+// PromisesSection.astro - Romantic promises & cute vows for Briggite
+---
+
+<section class="promises-section" id="promesas">
+  <div class="section-title-wrap">
+    <span class="sub-badge">💍 Desde mi alma</span>
+    <h2 class="section-title">Mis Promesas Para Ti</h2>
+    <p class="section-desc">Pase lo que pase y donde sea que estemos, estas siempre serán mis certezas contigo:</p>
+  </div>
+
+  <div class="promises-grid">
+    <!-- Promise 1 -->
+    <div class="promise-card glass-panel">
+      <div class="promise-icon-wrap">
+        <span class="promise-icon">🛡️</span>
+      </div>
+      <h3 class="promise-title">Cuidar Tu Corazón</h3>
+      <p class="promise-text">
+        Proteger tu paz, tu sonrisa y tu tranquilidad como el tesoro más sagrado. Ser tu refugio seguro siempre que el mundo exterior sea ruidoso.
+      </p>
+    </div>
+
+    <!-- Promise 2 -->
+    <div class="promise-card glass-panel">
+      <div class="promise-icon-wrap">
+        <span class="promise-icon">✨</span>
+      </div>
+      <h3 class="promise-title">Apoyar Tus Sueños</h3>
+      <p class="promise-text">
+        Celebrar cada una de tus metas, impulsarte a volar alto y ser tu fan número uno en cada paso que des hacia lo que anhelas.
+      </p>
+    </div>
+
+    <!-- Promise 3 -->
+    <div class="promise-card glass-panel">
+      <div class="promise-icon-wrap">
+        <span class="promise-icon">☕</span>
+      </div>
+      <h3 class="promise-title">Llenarte de Detalles</h3>
+      <p class="promise-text">
+        Nunca dejar de conquistarte. Sorprenderte con mensajitos, abrazos cálidos, risas tontas y recordarte lo hermosa que eres todos los días.
+      </p>
+    </div>
+
+    <!-- Promise 4 -->
+    <div class="promise-card glass-panel">
+      <div class="promise-icon-wrap">
+        <span class="promise-icon">🫂</span>
+      </div>
+      <h3 class="promise-title">Estar Siempre</h3>
+      <p class="promise-text">
+        En los días soleados para sonreír contigo y en los días nublados para sostener tu mano bien fuerte. No te soltaré jamás.
+      </p>
+    </div>
+  </div>
+
+  <!-- Interactive Kiss / Love Burst Trigger -->
+  <div class="kiss-box glass-panel">
+    <div class="kiss-info">
+      <h4 class="kiss-heading">¿Necesitas un recordatorio de cuánto te amo?</h4>
+      <p class="kiss-sub">Presiona el botón para enviarte una lluvia de besos y abrazos virtuales.</p>
+    </div>
+
+    <div class="kiss-action">
+      <button class="kiss-btn" id="kiss-burst-btn">
+        <span class="kiss-emoji">💋</span>
+        <span>¡Enviar Besos Virtuales!</span>
+      </button>
+      <div class="kiss-counter-display">
+        <span>Besitos acumulados: </span>
+        <strong id="kiss-counter-num">1,000,000</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .promises-section {
+    max-width: 1000px;
+    margin: 4rem auto;
+    padding: 2rem 1.5rem;
+    position: relative;
+    z-index: 10;
+  }
+
+  .section-title-wrap {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .sub-badge {
+    display: inline-block;
+    color: #ff9ebb;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-desc {
+    color: #d1b8c6;
+    font-size: 1.05rem;
+  }
+
+  .promises-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.8rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .promise-card {
+    padding: 2.2rem 1.6rem;
+    border-radius: 24px;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(26, 7, 34, 0.45);
+  }
+
+  .promise-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 94, 142, 0.4);
+    box-shadow: 0 12px 30px rgba(255, 94, 142, 0.2);
+  }
+
+  .promise-icon-wrap {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: rgba(255, 94, 142, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.4rem;
+    border: 1px solid rgba(255, 94, 142, 0.3);
+  }
+
+  .promise-icon {
+    font-size: 1.7rem;
+  }
+
+  .promise-title {
+    font-size: 1.25rem;
+    color: #fff2f6;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+  }
+
+  .promise-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #d6b8c9;
+  }
+
+  /* Kiss Box */
+  .kiss-box {
+    padding: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    background: linear-gradient(135deg, rgba(54, 12, 58, 0.6) 0%, rgba(26, 7, 34, 0.7) 100%);
+    border: 1.5px solid rgba(255, 94, 142, 0.35);
+  }
+
+  .kiss-heading {
+    font-size: 1.35rem;
+    color: #ffffff;
+    margin-bottom: 0.4rem;
+  }
+
+  .kiss-sub {
+    font-size: 0.95rem;
+    color: #e5bacc;
+  }
+
+  .kiss-action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    flex-shrink: 0;
+  }
+
+  .kiss-btn {
+    background: linear-gradient(135deg, #ff4081, #e91e63);
+    color: #ffffff;
+    border: none;
+    padding: 0.9rem 2rem;
+    border-radius: 50px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(233, 30, 99, 0.45);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    transition: all 0.25s ease;
+  }
+
+  .kiss-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 30px rgba(233, 30, 99, 0.7);
+  }
+
+  .kiss-emoji {
+    font-size: 1.3rem;
+    animation: softPulse 1.5s infinite;
+  }
+
+  .kiss-counter-display {
+    font-size: 0.85rem;
+    color: #ffccd8;
+  }
+
+  .kiss-counter-display strong {
+    color: #ffd080;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 768px) {
+    .kiss-box {
+      flex-direction: column;
+      text-align: center;
+      padding: 2rem 1.5rem;
+    }
+  }
+</style>
+
+<script>
+  import confetti from 'canvas-confetti';
+
+  function initKissBox() {
+    const kissBtn = document.getElementById('kiss-burst-btn');
+    const counterEl = document.getElementById('kiss-counter-num');
+    if (!kissBtn || !counterEl) return;
+
+    let count = 1000000;
+
+    kissBtn.addEventListener('click', (e) => {
+      count += 100;
+      counterEl.textContent = count.toLocaleString();
+
+      // Launch multi-directional confetti of hearts and kisses
+      confetti({
+        particleCount: 60,
+        spread: 90,
+        origin: { y: 0.8 },
+        colors: ['#ff4081', '#ff80ab', '#ffffff', '#ffd54f']
+      });
+
+      // Floating kiss emoji animation
+      const heartFloater = document.createElement('div');
+      heartFloater.textContent = ['💋', '💖', '🥰', '😘', '🌹'][Math.floor(Math.random() * 5)];
+      heartFloater.style.position = 'fixed';
+      heartFloater.style.left = `${e.clientX || window.innerWidth / 2}px`;
+      heartFloater.style.top = `${e.clientY || window.innerHeight / 2}px`;
+      heartFloater.style.fontSize = '2.5rem';
+      heartFloater.style.pointerEvents = 'none';
+      heartFloater.style.zIndex = '9999';
+      heartFloater.style.transition = 'all 1s ease-out';
+      heartFloater.style.opacity = '1';
+      document.body.appendChild(heartFloater);
+
+      requestAnimationFrame(() => {
+        heartFloater.style.transform = `translate(${(Math.random() - 0.5) * 120}px, -140px) scale(1.6)`;
+        heartFloater.style.opacity = '0';
+      });
+
+      setTimeout(() => heartFloater.remove(), 1000);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initKissBox);
+  } else {
+    initKissBox();
+  }
+</script>
+

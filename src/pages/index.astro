@@ -1,0 +1,238 @@
+---
+// index.astro - Página romántica para Briggite
+import PetalsCanvas from '../components/PetalsCanvas.astro';
+import FlowerGarden from '../components/FlowerGarden.astro';
+import LoveCounter from '../components/LoveCounter.astro';
+import LoveLetter from '../components/LoveLetter.astro';
+import ReasonsJar from '../components/ReasonsJar.astro';
+import PolaroidGallery from '../components/PolaroidGallery.astro';
+import PromisesSection from '../components/PromisesSection.astro';
+import LoveCoupons from '../components/LoveCoupons.astro';
+import MusicPlayer from '../components/MusicPlayer.astro';
+import '../styles/global.css';
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌹</text></svg>" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Para Briggite | Te Amo Con Todo Mi Corazón</title>
+    <meta name="description" content="Un detalle lleno de flores y amor hecho especialmente para mi hermosa novia Briggite." />
+  </head>
+  <body>
+    <!-- Falling petals & magical starlight -->
+    <PetalsCanvas />
+
+    <!-- Ambient Glow Orbs in Background -->
+    <div class="bg-orb orb-1" aria-hidden="true"></div>
+    <div class="bg-orb orb-2" aria-hidden="true"></div>
+    <div class="bg-orb orb-3" aria-hidden="true"></div>
+
+    <!-- Quick Navigation Ribbon -->
+    <nav class="romantic-nav">
+      <a href="#flores" class="nav-link">🌸 Flores</a>
+      <a href="#tiempo" class="nav-link">⏳ Tiempo</a>
+      <a href="#carta" class="nav-link">💌 Mi Carta</a>
+      <a href="#razones" class="nav-link">💖 Razones</a>
+      <a href="#recuerdos" class="nav-link">📸 Recuerdos</a>
+      <a href="#promesas" class="nav-link">💍 Promesas</a>
+      <a href="#cupones" class="nav-link">🎟️ Vales</a>
+    </nav>
+
+    <main class="content-wrapper">
+      <!-- Section 1: The Floral Garden Window & Te Amo Briggite -->
+      <section id="flores">
+        <FlowerGarden />
+      </section>
+
+      <!-- Section 2: Love Counter (Tiempo Juntos) -->
+      <LoveCounter />
+
+      <!-- Section 3: Wax-Sealed Love Letter -->
+      <LoveLetter />
+
+      <!-- Section 4: Jar of Infinite Reasons -->
+      <ReasonsJar />
+
+      <!-- Section 5: Polaroid Memories Gallery -->
+      <PolaroidGallery />
+
+      <!-- Section 6: Romantic Promises & Kiss Explosion -->
+      <PromisesSection />
+
+      <!-- Section 7: Love Coupons for Briggite -->
+      <LoveCoupons />
+
+      <!-- Sweet Sign-off Footer -->
+      <footer class="romantic-footer">
+        <div class="footer-heart-wrap">
+          <span class="pulse-heart">❤️</span>
+        </div>
+        <p class="footer-text font-serif">
+          Hecho con todo mi amor para la mujer más maravillosa del mundo: <strong>Briggite</strong>
+        </p>
+        <p class="footer-sub">
+          Gracias por ser mi paz, mi felicidad y mi amor bonito. Siempre tuyo. ✨
+        </p>
+        <span class="footer-tag">Eternamente Juntos</span>
+      </footer>
+    </main>
+
+    <!-- Floating Music Player (Web Audio API) -->
+    <MusicPlayer />
+  </body>
+</html>
+
+<style>
+  .content-wrapper {
+    position: relative;
+    z-index: 10;
+    padding-bottom: 6rem;
+  }
+
+  /* Glowing background blur orbs */
+  .bg-orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(100px);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.35;
+  }
+
+  .orb-1 {
+    width: 450px;
+    height: 450px;
+    background: #ff2a6d;
+    top: 5%;
+    left: 10%;
+    animation: orbFloat 14s ease-in-out infinite alternate;
+  }
+
+  .orb-2 {
+    width: 500px;
+    height: 500px;
+    background: #8a2be2;
+    top: 40%;
+    right: 5%;
+    animation: orbFloat 18s ease-in-out infinite alternate-reverse;
+  }
+
+  .orb-3 {
+    width: 400px;
+    height: 400px;
+    background: #ff70a6;
+    bottom: 10%;
+    left: 15%;
+    animation: orbFloat 12s ease-in-out infinite alternate;
+  }
+
+  @keyframes orbFloat {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(40px, 30px) scale(1.15); }
+  }
+
+  /* Romantic Navigation */
+  .romantic-nav {
+    position: sticky;
+    top: 16px;
+    display: flex;
+    justify-content: center;
+    gap: 0.6rem;
+    z-index: 50;
+    padding: 0 1rem;
+    flex-wrap: wrap;
+  }
+
+  .nav-link {
+    background: rgba(30, 8, 38, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 94, 142, 0.25);
+    padding: 0.45rem 1rem;
+    border-radius: 30px;
+    color: #ffccd8;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  }
+
+  .nav-link:hover {
+    background: #ff5e8e;
+    color: #ffffff;
+    border-color: #ff5e8e;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 94, 142, 0.5);
+  }
+
+  /* Footer */
+  .romantic-footer {
+    text-align: center;
+    padding: 4rem 1.5rem 2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+    border-top: 1px solid rgba(255, 94, 142, 0.15);
+  }
+
+  .footer-heart-wrap {
+    margin-bottom: 1rem;
+  }
+
+  .pulse-heart {
+    font-size: 2.2rem;
+    display: inline-block;
+    animation: softPulse 1.4s ease-in-out infinite;
+  }
+
+  .footer-text {
+    font-size: 1.35rem;
+    color: #ffffff;
+    margin-bottom: 0.6rem;
+  }
+
+  .footer-text strong {
+    color: #ffd080;
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.2rem;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 6px;
+  }
+
+  .footer-sub {
+    color: #c9a4b8;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-tag {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #ff85a2;
+    padding: 0.3rem 0.8rem;
+    background: rgba(255, 133, 162, 0.1);
+    border: 1px solid rgba(255, 133, 162, 0.25);
+    border-radius: 20px;
+  }
+
+  @media (max-width: 640px) {
+    .romantic-nav {
+      gap: 0.3rem;
+      top: 10px;
+    }
+    .nav-link {
+      padding: 0.35rem 0.65rem;
+      font-size: 0.75rem;
+    }
+    .footer-text {
+      font-size: 1.15rem;
+    }
+  }
+</style>

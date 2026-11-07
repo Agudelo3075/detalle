@@ -1,0 +1,372 @@
+---
+// LoveCounter.astro - Live romantic counter of time together for Briggite & Sebastian
+---
+
+<section class="counter-section" id="tiempo">
+  <div class="section-title-wrap">
+    <span class="sub-badge">⏳ Cada instante cuenta</span>
+    <h2 class="section-title">El Tiempo A Tu Lado</h2>
+    <p class="section-desc">Porque cada segundo contigo es un regalo que atesoro con toda mi alma.</p>
+  </div>
+
+  <div class="counter-card glass-panel">
+    <div class="counter-header">
+      <span class="heart-pulse-icon">💓</span>
+      <h3 class="counter-header-title font-editorial">Amándote Desde El Primer Día</h3>
+      <p class="counter-date-label" id="counter-start-label">Juntos coleccionando momentos mágicos</p>
+    </div>
+
+    <!-- Live Timer Clock -->
+    <div class="time-grid">
+      <div class="time-block">
+        <span class="time-value" id="days-val">--</span>
+        <span class="time-label">Días</span>
+      </div>
+      <div class="time-separator">:</div>
+      <div class="time-block">
+        <span class="time-value" id="hours-val">--</span>
+        <span class="time-label">Horas</span>
+      </div>
+      <div class="time-separator">:</div>
+      <div class="time-block">
+        <span class="time-value" id="minutes-val">--</span>
+        <span class="time-label">Minutos</span>
+      </div>
+      <div class="time-separator">:</div>
+      <div class="time-block">
+        <span class="time-value" id="seconds-val">--</span>
+        <span class="time-label">Segundos</span>
+      </div>
+    </div>
+
+    <!-- Romantic stats pills -->
+    <div class="stats-row">
+      <div class="stat-pill">
+        <span class="stat-icon">✨</span>
+        <span>Risas compartidas: <strong>Infinitas</strong></span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-icon">☕</span>
+        <span>Planes por vivir: <strong>Toda una vida</strong></span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-icon">💖</span>
+        <span>Amor por ti: <strong>100% Incondicional</strong></span>
+      </div>
+    </div>
+
+    <!-- Custom Date Setting Toggle -->
+    <div class="custom-date-box">
+      <details class="date-details">
+        <summary class="date-summary">📅 Personalizar fecha de nuestro aniversario</summary>
+        <div class="date-picker-wrap">
+          <label for="anniversary-input" class="date-label">Elige la fecha en que comenzó nuestra historia:</label>
+          <div class="input-action-row">
+            <input type="date" id="anniversary-input" class="date-input" />
+            <button id="save-date-btn" class="save-date-btn">Guardar Fecha ❤️</button>
+          </div>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<style>
+  .counter-section {
+    max-width: 900px;
+    margin: 4rem auto;
+    padding: 2rem 1.5rem;
+    position: relative;
+    z-index: 10;
+  }
+
+  .section-title-wrap {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .sub-badge {
+    display: inline-block;
+    color: #ffd080;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-desc {
+    color: #d1b8c6;
+    font-size: 1.05rem;
+  }
+
+  .counter-card {
+    padding: 3rem 2.5rem;
+    text-align: center;
+    border-radius: 32px;
+    background: radial-gradient(ellipse at 50% 20%, rgba(46, 12, 54, 0.7) 0%, rgba(18, 5, 24, 0.85) 100%);
+    border: 1.5px solid rgba(255, 94, 142, 0.3);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 94, 142, 0.15);
+  }
+
+  .heart-pulse-icon {
+    font-size: 2.4rem;
+    display: inline-block;
+    animation: softPulse 1.2s infinite ease-in-out;
+    margin-bottom: 0.5rem;
+  }
+
+  .counter-header-title {
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 0.3rem;
+  }
+
+  .counter-date-label {
+    color: #f7bbd4;
+    font-size: 0.95rem;
+    margin-bottom: 2.5rem;
+  }
+
+  /* Time Grid */
+  .time-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .time-block {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 94, 142, 0.35);
+    border-radius: 20px;
+    padding: 1.2rem 1.6rem;
+    min-width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  }
+
+  .time-value {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    color: #ffd080;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 0 15px rgba(255, 208, 128, 0.4);
+  }
+
+  .time-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #ffb8cf;
+    font-weight: 500;
+  }
+
+  .time-separator {
+    font-size: 2.5rem;
+    color: rgba(255, 94, 142, 0.6);
+    font-weight: 300;
+  }
+
+  /* Stats Row */
+  .stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .stat-pill {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 0.55rem 1.2rem;
+    border-radius: 30px;
+    font-size: 0.88rem;
+    color: #e5cad8;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .stat-pill strong {
+    color: #ffd080;
+  }
+
+  /* Custom Date Picker Dropdown */
+  .custom-date-box {
+    border-top: 1px dashed rgba(255, 94, 142, 0.25);
+    padding-top: 1.5rem;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .date-details {
+    color: #ffccd8;
+    font-size: 0.88rem;
+    cursor: pointer;
+  }
+
+  .date-summary {
+    color: #ff9ebb;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    outline: none;
+    transition: color 0.2s ease;
+  }
+
+  .date-summary:hover {
+    color: #ffd080;
+  }
+
+  .date-picker-wrap {
+    background: rgba(0, 0, 0, 0.35);
+    padding: 1.2rem;
+    border-radius: 16px;
+    margin-top: 0.8rem;
+    text-align: left;
+  }
+
+  .date-label {
+    display: block;
+    margin-bottom: 0.6rem;
+    font-size: 0.82rem;
+    color: #d1b8c6;
+  }
+
+  .input-action-row {
+    display: flex;
+    gap: 0.6rem;
+  }
+
+  .date-input {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 94, 142, 0.4);
+    color: #fff;
+    padding: 0.5rem 0.8rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    outline: none;
+    flex-grow: 1;
+  }
+
+  .save-date-btn {
+    background: #ff5e8e;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background 0.2s ease;
+  }
+
+  .save-date-btn:hover {
+    background: #d81b60;
+  }
+
+  @media (max-width: 640px) {
+    .counter-card {
+      padding: 2.2rem 1.4rem;
+    }
+    .time-block {
+      min-width: 70px;
+      padding: 0.8rem 1rem;
+    }
+    .time-separator {
+      display: none;
+    }
+    .time-grid {
+      gap: 0.6rem;
+    }
+    .input-action-row {
+      flex-direction: column;
+    }
+  }
+</style>
+
+<script>
+  function initLoveCounter() {
+    const daysEl = document.getElementById('days-val');
+    const hoursEl = document.getElementById('hours-val');
+    const minutesEl = document.getElementById('minutes-val');
+    const secondsEl = document.getElementById('seconds-val');
+    const dateInput = document.getElementById('anniversary-input') as HTMLInputElement | null;
+    const saveDateBtn = document.getElementById('save-date-btn');
+    const dateLabel = document.getElementById('counter-start-label');
+
+    if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+
+    // Default romantic date: 1 year ago or custom date saved
+    const savedDate = localStorage.getItem('briggite_anniversary_date');
+    let startDate = savedDate ? new Date(savedDate) : new Date('2025-01-01T00:00:00');
+
+    if (dateInput) {
+      dateInput.value = startDate.toISOString().split('T')[0];
+    }
+
+    function updateLabel() {
+      if (dateLabel) {
+        const formatted = startDate.toLocaleDateString('es-ES', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        });
+        dateLabel.textContent = `Nuestra historia juntos desde el ${formatted} ✨`;
+      }
+    }
+
+    updateLabel();
+
+    function updateCounter() {
+      const now = new Date();
+      const diffMs = now.getTime() - startDate.getTime();
+
+      // If date is in the future, handle gracefully
+      const safeDiff = Math.max(0, diffMs);
+
+      const days = Math.floor(safeDiff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((safeDiff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((safeDiff / (1000 * 60)) % 60);
+      const seconds = Math.floor((safeDiff / 1000) % 60);
+
+      daysEl!.textContent = String(days);
+      hoursEl!.textContent = String(hours).padStart(2, '0');
+      minutesEl!.textContent = String(minutes).padStart(2, '0');
+      secondsEl!.textContent = String(seconds).padStart(2, '0');
+    }
+
+    updateCounter();
+    setInterval(updateCounter, 1000);
+
+    saveDateBtn?.addEventListener('click', () => {
+      if (dateInput && dateInput.value) {
+        startDate = new Date(dateInput.value + 'T00:00:00');
+        localStorage.setItem('briggite_anniversary_date', startDate.toISOString());
+        updateLabel();
+        updateCounter();
+        alert('¡Fecha de aniversario actualizada con amor! ❤️');
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLoveCounter);
+  } else {
+    initLoveCounter();
+  }
+</script>

@@ -1,0 +1,347 @@
+---
+// ReasonsJar.astro - "Frasquito de razones para amarte"
+---
+
+<section class="reasons-section" id="razones">
+  <div class="section-title-wrap">
+    <span class="sub-badge">✨ Infinitas razones</span>
+    <h2 class="section-title">¿Por Qué Te Amo, Briggite?</h2>
+    <p class="section-desc">Cada día descubro un motivo nuevo para enamorarme más de ti.</p>
+  </div>
+
+  <div class="jar-interactive-area">
+    <!-- Glowing Jar Visual -->
+    <div class="jar-card glass-panel">
+      <div class="jar-illustration" id="jar-visual">
+        <div class="jar-lid"></div>
+        <div class="jar-neck">
+          <div class="jar-ribbon">
+            <span class="ribbon-bow">🎀</span>
+          </div>
+        </div>
+        <div class="jar-body">
+          <div class="jar-glass-shine"></div>
+          <!-- Little Floating Hearts inside jar -->
+          <div class="floating-hearts-jar">
+            <span class="j-heart h1">💖</span>
+            <span class="j-heart h2">🌸</span>
+            <span class="j-heart h3">✨</span>
+            <span class="j-heart h4">💕</span>
+            <span class="j-heart h5">🌹</span>
+            <span class="j-heart h6">💗</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Reason Display Paper -->
+      <div class="note-display">
+        <div class="note-badge">
+          <span class="note-star">🌟</span>
+          <span id="reason-counter">Razón #1</span>
+        </div>
+
+        <div class="note-quote-box">
+          <p id="reason-text" class="reason-text font-serif">
+            "Amo la forma en que tus ojos brillan cuando estás feliz; es la vista más hermosa del mundo."
+          </p>
+        </div>
+
+        <button class="draw-reason-btn" id="draw-btn">
+          <span>Sacar otra razón de amor 💖</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .reasons-section {
+    max-width: 900px;
+    margin: 4rem auto;
+    padding: 2rem 1.5rem;
+    position: relative;
+    z-index: 10;
+  }
+
+  .section-title-wrap {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .sub-badge {
+    display: inline-block;
+    color: #ffd080;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-desc {
+    color: #d1b8c6;
+    font-size: 1.05rem;
+  }
+
+  .jar-interactive-area {
+    display: flex;
+    justify-content: center;
+  }
+
+  .jar-card {
+    width: 100%;
+    max-width: 720px;
+    padding: 3rem 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    background: rgba(30, 8, 38, 0.65);
+    border: 1px solid rgba(255, 94, 142, 0.25);
+    border-radius: 30px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(255, 94, 142, 0.1);
+  }
+
+  /* The Illustrated Crystal Jar */
+  .jar-illustration {
+    position: relative;
+    width: 160px;
+    height: 220px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .jar-illustration:hover {
+    transform: scale(1.05);
+  }
+
+  .jar-lid {
+    width: 80px;
+    height: 18px;
+    background: linear-gradient(to right, #cf9249, #ecc777, #ba813a);
+    border-radius: 6px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+    z-index: 3;
+  }
+
+  .jar-neck {
+    width: 65px;
+    height: 14px;
+    background: rgba(255, 255, 255, 0.15);
+    border-left: 2px solid rgba(255, 255, 255, 0.4);
+    border-right: 2px solid rgba(255, 255, 255, 0.4);
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  .jar-ribbon {
+    position: absolute;
+    top: -2px;
+  }
+
+  .ribbon-bow {
+    font-size: 1.4rem;
+  }
+
+  .jar-body {
+    width: 130px;
+    height: 170px;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 182, 193, 0.08) 50%, rgba(255, 94, 142, 0.15) 100%);
+    border: 3px solid rgba(255, 255, 255, 0.45);
+    border-radius: 20px 20px 40px 40px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(255, 94, 142, 0.2), inset 0 0 20px rgba(255, 255, 255, 0.2);
+  }
+
+  .jar-glass-shine {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 14px;
+    height: 130px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), transparent);
+    border-radius: 10px;
+  }
+
+  .floating-hearts-jar {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .j-heart {
+    position: absolute;
+    font-size: 1.2rem;
+    animation: floatInJar 3s ease-in-out infinite alternate;
+  }
+
+  .h1 { top: 40px; left: 35px; animation-delay: 0s; font-size: 1.5rem; }
+  .h2 { top: 80px; left: 20px; animation-delay: 0.5s; }
+  .h3 { top: 75px; left: 75px; animation-delay: 1.2s; font-size: 1.1rem; }
+  .h4 { top: 115px; left: 45px; animation-delay: 0.8s; font-size: 1.4rem; }
+  .h5 { top: 125px; left: 80px; animation-delay: 1.5s; }
+  .h6 { top: 35px; left: 70px; animation-delay: 0.3s; font-size: 1.1rem; }
+
+  @keyframes floatInJar {
+    0% { transform: translateY(0px) rotate(0deg); }
+    100% { transform: translateY(-12px) rotate(10deg); }
+  }
+
+  /* Note Display Area */
+  .note-display {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .note-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(255, 208, 128, 0.15);
+    color: #ffd080;
+    border: 1px solid rgba(255, 208, 128, 0.3);
+    padding: 0.3rem 0.9rem;
+    border-radius: 14px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+  }
+
+  .note-quote-box {
+    background: rgba(255, 255, 255, 0.06);
+    border-left: 4px solid #ff5e8e;
+    border-radius: 0 16px 16px 0;
+    padding: 1.5rem 1.8rem;
+    width: 100%;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.8rem;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .reason-text {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: #fff4f8;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .draw-reason-btn {
+    background: linear-gradient(135deg, #ff70a6, #ff4071);
+    color: #fff;
+    border: none;
+    padding: 0.85rem 1.8rem;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(255, 64, 113, 0.4);
+    transition: all 0.25s ease;
+  }
+
+  .draw-reason-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(255, 64, 113, 0.6);
+  }
+
+  @media (max-width: 640px) {
+    .jar-card {
+      flex-direction: column;
+      padding: 2.2rem 1.5rem;
+      gap: 1.8rem;
+      text-align: center;
+    }
+    .note-display {
+      align-items: center;
+    }
+    .reason-text {
+      font-size: 1.1rem;
+    }
+  }
+</style>
+
+<script>
+  import confetti from 'canvas-confetti';
+
+  const reasons = [
+    "Amo la forma en que tus ojos brillan cuando estás feliz; es la vista más hermosa del mundo.",
+    "Amo cómo me escuchas con tanta paciencia e interés cuando te cuento cualquier cosa.",
+    "Amo tu sentido del humor y cada carcajada que compartimos juntos.",
+    "Amo que contigo puedo ser exactamente quien soy, sin filtros ni miedos.",
+    "Amo la bondad infinita y la pureza con la que tratas a los demás.",
+    "Amo tus abrazos, son mi lugar favorito y mi mayor refugio.",
+    "Amo la manera tan bonita y dulce en la que me dices que me quieres.",
+    "Amo cómo tu sonrisa tiene el poder de alegrar incluso mi día más difícil.",
+    "Amo cada detalle tuyo, desde tus manías más tiernas hasta tu determinación.",
+    "Amo que cuando me tomas de la mano siento que nada malo puede pasar.",
+    "Amo soñar despierto e imaginar todo un futuro maravilloso a tu lado.",
+    "Amo que seas mi mejor amiga, mi confidente y el amor de mi vida a la vez.",
+    "Amo tu inteligencia y lo apasionada que eres cuando algo te entusiasma.",
+    "Amo la paz tan inmensa que me da tu presencia.",
+    "Amo cómo haces que los momentos más simples se sientan como magia pura.",
+    "Amo tu ternura infinita, tu voz y tus besos que me reinician la vida.",
+    "Amo que siempre tengas una palabra reconfortante cuando más lo necesito.",
+    "Amo que cada segundo contigo valga un millón de recuerdos inolvidables.",
+    "Amo cómo luces cuando despiertas y cómo luces cuando sonríes: perfecta.",
+    "Amo simplemente que existas y que hayas decidido compartir tu vida conmigo."
+  ];
+
+  let currentIndex = 0;
+
+  function initReasonsJar() {
+    const drawBtn = document.getElementById('draw-btn');
+    const jarVisual = document.getElementById('jar-visual');
+    const textEl = document.getElementById('reason-text');
+    const counterEl = document.getElementById('reason-counter');
+
+    if (!drawBtn || !textEl || !counterEl) return;
+
+    function getNextReason(e?: MouseEvent) {
+      currentIndex = (currentIndex + 1) % reasons.length;
+      const displayNum = currentIndex + 1;
+
+      textEl!.style.opacity = '0';
+      textEl!.style.transform = 'translateY(8px)';
+
+      setTimeout(() => {
+        textEl!.textContent = `"${reasons[currentIndex]}"`;
+        counterEl!.textContent = `Razón #${displayNum} de infinitas`;
+        textEl!.style.opacity = '1';
+        textEl!.style.transform = 'translateY(0)';
+      }, 250);
+
+      // Mini burst of stars and hearts
+      confetti({
+        particleCount: 20,
+        spread: 60,
+        origin: { y: 0.7 },
+        colors: ['#ff70a6', '#ffd080', '#ffffff', '#ff4071']
+      });
+    }
+
+    drawBtn.addEventListener('click', (e) => getNextReason(e));
+    jarVisual?.addEventListener('click', (e) => getNextReason(e));
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initReasonsJar);
+  } else {
+    initReasonsJar();
+  }
+</script>
+

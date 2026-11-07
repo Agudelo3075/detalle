@@ -1,0 +1,372 @@
+---
+// LoveCoupons.astro - Interactive romantic coupons for Briggite to redeem
+---
+
+<section class="coupons-section" id="cupones">
+  <div class="section-title-wrap">
+    <span class="sub-badge">🎟️ Vales especiales</span>
+    <h2 class="section-title">Vales de Amor Canjeables</h2>
+    <p class="section-desc">Válidos para siempre, sin fecha de caducidad. ¡Canjea el que quieras cuando lo necesites!</p>
+  </div>
+
+  <div class="coupons-grid">
+    <!-- Coupon 1 -->
+    <div class="coupon-card glass-panel" data-title="Abrazo Eterno">
+      <div class="coupon-cutout left"></div>
+      <div class="coupon-cutout right"></div>
+      <div class="coupon-header">
+        <span class="coupon-emoji">🫂</span>
+        <span class="coupon-id">VALE #01</span>
+      </div>
+      <h3 class="coupon-name">Abrazo Infinito</h3>
+      <p class="coupon-detail">Válido por un abrazo apretado de esos que te hacen suspirar y olvidarte de todo lo malo.</p>
+      <button class="redeem-btn">Canjear Vale ❤️</button>
+    </div>
+
+    <!-- Coupon 2 -->
+    <div class="coupon-card glass-panel" data-title="Tarde de Pelis & Mimos">
+      <div class="coupon-cutout left"></div>
+      <div class="coupon-cutout right"></div>
+      <div class="coupon-header">
+        <span class="coupon-emoji">🎬</span>
+        <span class="coupon-id">VALE #02</span>
+      </div>
+      <h3 class="coupon-name">Tarde de Pelis & Mimos</h3>
+      <p class="coupon-detail">Tú eliges la película, yo llevo tus snacks y chocolates favoritos, mantita y mimos ilimitados.</p>
+      <button class="redeem-btn">Canjear Vale ❤️</button>
+    </div>
+
+    <!-- Coupon 3 -->
+    <div class="coupon-card glass-panel" data-title="Cita Romántica Sorpresa">
+      <div class="coupon-cutout left"></div>
+      <div class="coupon-cutout right"></div>
+      <div class="coupon-header">
+        <span class="coupon-emoji">✨</span>
+        <span class="coupon-id">VALE #03</span>
+      </div>
+      <h3 class="coupon-name">Cita Sorpresa</h3>
+      <p class="coupon-detail">Solo arréglate y ponte más hermosa de lo que ya eres. Yo me encargo de todo el plan mágico.</p>
+      <button class="redeem-btn">Canjear Vale ❤️</button>
+    </div>
+
+    <!-- Coupon 4 -->
+    <div class="coupon-card glass-panel" data-title="Comida Favorita">
+      <div class="coupon-cutout left"></div>
+      <div class="coupon-cutout right"></div>
+      <div class="coupon-header">
+        <span class="coupon-emoji">🍕</span>
+        <span class="coupon-id">VALE #04</span>
+      </div>
+      <h3 class="coupon-name">Tu Antojo Favorito</h3>
+      <p class="coupon-detail">Lo que a mi princesa se le antoje hoy, será una orden. ¡Comida deliciosa garantizada!</p>
+      <button class="redeem-btn">Canjear Vale ❤️</button>
+    </div>
+
+    <!-- Coupon 5 -->
+    <div class="coupon-card glass-panel" data-title="Masaje Relajante">
+      <div class="coupon-cutout left"></div>
+      <div class="coupon-cutout right"></div>
+      <div class="coupon-header">
+        <span class="coupon-emoji">💆‍♀️</span>
+        <span class="coupon-id">VALE #05</span>
+      </div>
+      <h3 class="coupon-name">Masaje & Consentimiento</h3>
+      <p class="coupon-detail">Válido por una sesión de masajes en la espalda o caricias en el cabello para que te relajes.</p>
+      <button class="redeem-btn">Canjear Vale ❤️</button>
+    </div>
+
+    <!-- Coupon 6 -->
+    <div class="coupon-card glass-panel" data-title="Ganar Cualquier Discusión">
+      <div class="coupon-cutout left"></div>
+      <div class="coupon-cutout right"></div>
+      <div class="coupon-header">
+        <span class="coupon-emoji">👑</span>
+        <span class="coupon-id">VALE #06</span>
+      </div>
+      <h3 class="coupon-name">Tú Tienes la Razón</h3>
+      <p class="coupon-detail">Gana automáticamente cualquier debate con un besito de por medio. ¡Incondicional!</p>
+      <button class="redeem-btn">Canjear Vale ❤️</button>
+    </div>
+  </div>
+
+  <!-- Modal of redemption -->
+  <div class="redeem-modal" id="redeem-modal" aria-hidden="true">
+    <div class="modal-card glass-panel">
+      <span class="modal-heart">🎉💖</span>
+      <h3 id="modal-coupon-title" class="modal-title font-serif">¡Vale Canjeado Con Éxito!</h3>
+      <p id="modal-coupon-desc" class="modal-desc">
+        Este vale ha sido activado oficialmente para Briggite. Reclámalo con tu novio en cualquier momento.
+      </p>
+      <button class="modal-close-btn" id="modal-close-btn">¡Entendido, mi amor! 🥰</button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .coupons-section {
+    max-width: 1000px;
+    margin: 4rem auto;
+    padding: 2rem 1.5rem;
+    position: relative;
+    z-index: 10;
+  }
+
+  .section-title-wrap {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .sub-badge {
+    display: inline-block;
+    color: #ffd080;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-desc {
+    color: #d1b8c6;
+    font-size: 1.05rem;
+  }
+
+  .coupons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.8rem;
+  }
+
+  .coupon-card {
+    position: relative;
+    padding: 2rem 1.8rem;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(38, 10, 48, 0.7), rgba(20, 5, 26, 0.85));
+    border: 1.5px dashed rgba(255, 94, 142, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+  }
+
+  .coupon-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(255, 94, 142, 0.25);
+    border-color: #ffd080;
+  }
+
+  /* Ticket cutouts */
+  .coupon-cutout {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    height: 22px;
+    background: #08020d;
+    border-radius: 50%;
+  }
+
+  .coupon-cutout.left { left: -11px; }
+  .coupon-cutout.right { right: -11px; }
+
+  .coupon-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .coupon-emoji {
+    font-size: 1.8rem;
+  }
+
+  .coupon-id {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #ffd080;
+    background: rgba(255, 208, 128, 0.15);
+    padding: 3px 8px;
+    border-radius: 8px;
+  }
+
+  .coupon-name {
+    font-size: 1.3rem;
+    color: #fff2f6;
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+  }
+
+  .coupon-detail {
+    font-size: 0.92rem;
+    color: #d1b5c4;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+  }
+
+  .redeem-btn {
+    background: linear-gradient(135deg, #ff5e8e, #d81b60);
+    color: #ffffff;
+    border: none;
+    padding: 0.7rem 1.4rem;
+    border-radius: 25px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 94, 142, 0.3);
+    transition: all 0.25s ease;
+    align-self: flex-start;
+  }
+
+  .redeem-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 94, 142, 0.5);
+  }
+
+  .coupon-card.redeemed .redeem-btn {
+    background: #2e7d32;
+    cursor: default;
+    box-shadow: none;
+  }
+
+  /* Redeem Modal */
+  .redeem-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    padding: 1.5rem;
+  }
+
+  .redeem-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .modal-card {
+    max-width: 440px;
+    width: 100%;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    background: #1c0623;
+    border: 2px solid #ff5e8e;
+    border-radius: 28px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 94, 142, 0.4);
+    transform: scale(0.9);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .redeem-modal.active .modal-card {
+    transform: scale(1);
+  }
+
+  .modal-heart {
+    font-size: 2.8rem;
+    display: block;
+    margin-bottom: 0.8rem;
+  }
+
+  .modal-title {
+    font-size: 1.8rem;
+    color: #ffffff;
+    margin-bottom: 0.8rem;
+  }
+
+  .modal-desc {
+    color: #e5c9d6;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 1.8rem;
+  }
+
+  .modal-close-btn {
+    background: linear-gradient(135deg, #ff5e8e, #e91e63);
+    color: #fff;
+    border: none;
+    padding: 0.85rem 2rem;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(255, 94, 142, 0.4);
+    transition: all 0.25s ease;
+  }
+
+  .modal-close-btn:hover {
+    transform: scale(1.04);
+  }
+</style>
+
+<script>
+  import confetti from 'canvas-confetti';
+
+  function initCoupons() {
+    const couponCards = document.querySelectorAll('.coupon-card');
+    const modal = document.getElementById('redeem-modal');
+    const modalTitle = document.getElementById('modal-coupon-title');
+    const modalDesc = document.getElementById('modal-coupon-desc');
+    const modalCloseBtn = document.getElementById('modal-close-btn');
+
+    if (!modal || !modalTitle || !modalDesc || !modalCloseBtn) return;
+
+    couponCards.forEach((card) => {
+      const btn = card.querySelector('.redeem-btn') as HTMLButtonElement | null;
+      const title = card.getAttribute('data-title') || 'Vale de Amor';
+
+      btn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+
+        card.classList.add('redeemed');
+        btn.textContent = '¡Canjeado! ✓';
+
+        modalTitle.textContent = `¡Vale: "${title}" Canjeado!`;
+        modalDesc.innerHTML = `Acabas de activar este vale especial, hermosa <strong>Briggite</strong>.<br><br>Válido para ser disfrutado con tu novio inmediatamente. ¡Él estará más que feliz de cumplirlo!`;
+
+        modal.classList.add('active');
+
+        // Confetti burst
+        confetti({
+          particleCount: 50,
+          spread: 70,
+          origin: { y: 0.5 },
+          colors: ['#ff5e8e', '#ffd080', '#ffffff', '#ff4081']
+        });
+      });
+    });
+
+    function closeModal() {
+      modal?.classList.remove('active');
+    }
+
+    modalCloseBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCoupons);
+  } else {
+    initCoupons();
+  }
+</script>
+

@@ -1,0 +1,346 @@
+---
+// PolaroidGallery.astro - Romantic polaroid photo wall for Briggite & Sebastian
+---
+
+<section class="gallery-section" id="recuerdos">
+  <div class="section-title-wrap">
+    <span class="sub-badge">📸 Nuestros instantes</span>
+    <h2 class="section-title">Galería de Recuerdos</h2>
+    <p class="section-desc">Instantes mágicos que guardo como tesoros en mi corazón.</p>
+  </div>
+
+  <div class="polaroid-grid">
+    <!-- Polaroid 1 -->
+    <div class="polaroid-item tilt-left" data-title="La Primera Sonrisa" data-note="Aún recuerdo la primera vez que te vi sonreír. En ese instante supe que el mundo tenía una belleza que nunca antes había conocido.">
+      <div class="tape-strip"></div>
+      <div class="polaroid-photo bg-scene-1">
+        <svg viewBox="0 0 300 240" class="scene-svg">
+          <defs>
+            <radialGradient id="sun-grad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#ffd54f"/>
+              <stop offset="100%" stop-color="#ff7043" stop-opacity="0.2"/>
+            </radialGradient>
+          </defs>
+          <rect width="300" height="240" fill="#240c2e"/>
+          <circle cx="150" cy="110" r="70" fill="url(#sun-grad)"/>
+          <!-- Couple silhouette under sunset -->
+          <path d="M120 200 C125 160 135 150 145 150 C145 140 140 130 145 125 C150 120 155 125 155 130 C155 140 150 145 150 150 C160 150 170 160 175 200 Z" fill="#ffccd8" opacity="0.9"/>
+          <circle cx="138" cy="130" r="9" fill="#ffccd8"/>
+          <circle cx="155" cy="128" r="8" fill="#ffd1df"/>
+          <!-- Little floating hearts -->
+          <text x="145" y="100" font-size="20" fill="#ff4081">❤️</text>
+        </svg>
+      </div>
+      <p class="polaroid-caption font-script">Tu primera sonrisa que me enamoró ✨</p>
+    </div>
+
+    <!-- Polaroid 2 -->
+    <div class="polaroid-item tilt-right" data-title="Bajo Las Estrellas" data-note="Cualquier noche fría se vuelve cálida cuando te abrazo y miramos el cielo juntos. Tú brillas más que todas las estrellas.">
+      <div class="tape-strip"></div>
+      <div class="polaroid-photo bg-scene-2">
+        <svg viewBox="0 0 300 240" class="scene-svg">
+          <rect width="300" height="240" fill="#12061e"/>
+          <!-- Moon -->
+          <circle cx="230" cy="60" r="30" fill="#fff9c4"/>
+          <circle cx="240" cy="55" r="26" fill="#12061e"/>
+          <!-- Stars -->
+          <circle cx="40" cy="40" r="2" fill="#fff"/>
+          <circle cx="90" cy="70" r="1.5" fill="#fff"/>
+          <circle cx="170" cy="30" r="2.5" fill="#ffd54f"/>
+          <circle cx="130" cy="90" r="1.5" fill="#fff"/>
+          <circle cx="70" cy="120" r="2" fill="#fff"/>
+          <!-- Silhouette sitting together -->
+          <ellipse cx="140" cy="210" rx="90" ry="25" fill="#30133d"/>
+          <path d="M125 190 Q140 155 155 190 Z" fill="#ffd1df"/>
+          <circle cx="135" cy="165" r="10" fill="#ffd1df"/>
+          <circle cx="150" cy="165" r="9" fill="#ffb6c1"/>
+          <text x="138" y="140" font-size="18">🌟</text>
+        </svg>
+      </div>
+      <p class="polaroid-caption font-script">Noches mágicas contigo 🌙</p>
+    </div>
+
+    <!-- Polaroid 3 -->
+    <div class="polaroid-item tilt-left-sm" data-title="Risas Incontrolables" data-note="Amo cuando nos reímos de cualquier tontería hasta que nos duele el estómago. Tu alegría es la mejor música que existe.">
+      <div class="tape-strip"></div>
+      <div class="polaroid-photo bg-scene-3">
+        <svg viewBox="0 0 300 240" class="scene-svg">
+          <rect width="300" height="240" fill="#2d132c"/>
+          <circle cx="150" cy="120" r="80" fill="rgba(255, 94, 142, 0.25)"/>
+          <!-- Coffee / Cafe cute cup -->
+          <path d="M100 130 L105 180 Q105 195 125 195 L175 195 Q195 195 195 180 L200 130 Z" fill="#ff94b8"/>
+          <path d="M195 145 Q215 145 215 165 Q215 180 193 180" stroke="#ff94b8" stroke-width="6" fill="none"/>
+          <text x="135" y="170" font-size="28">☕</text>
+          <text x="145" y="105" font-size="24" fill="#ffccd8">💖</text>
+        </svg>
+      </div>
+      <p class="polaroid-caption font-script">Nuestras risas y charlas sin fin ☕</p>
+    </div>
+
+    <!-- Polaroid 4 -->
+    <div class="polaroid-item tilt-right-sm" data-title="Un Futuro Inolvidable" data-note="Lo más hermoso de nosotros dos no es solo lo que hemos vivido, sino todo lo que aún nos queda por construir de la mano.">
+      <div class="tape-strip"></div>
+      <div class="polaroid-photo bg-scene-4">
+        <svg viewBox="0 0 300 240" class="scene-svg">
+          <rect width="300" height="240" fill="#1b0826"/>
+          <!-- Path of flowers -->
+          <path d="M0 240 Q150 160 300 240 Z" fill="#4a154b"/>
+          <text x="50" y="220" font-size="20">🌸</text>
+          <text x="110" y="210" font-size="20">🌷</text>
+          <text x="180" y="210" font-size="20">🌹</text>
+          <text x="240" y="220" font-size="20">🌺</text>
+          <!-- Couple holding hands walking -->
+          <circle cx="140" cy="140" r="10" fill="#ffd1df"/>
+          <circle cx="160" cy="142" r="9" fill="#ffc2d6"/>
+          <path d="M130 180 L140 150 L150 180 Z" fill="#ffccd8"/>
+          <path d="M152 180 L160 152 L170 180 Z" fill="#ffb8cf"/>
+          <text x="142" y="120" font-size="22">💍</text>
+        </svg>
+      </div>
+      <p class="polaroid-caption font-script">Caminando juntos siempre 🌸</p>
+    </div>
+  </div>
+
+  <!-- Lightbox Modal for Polaroid -->
+  <div class="polaroid-modal" id="polaroid-modal" aria-hidden="true">
+    <div class="modal-polaroid-box">
+      <button class="modal-close" id="modal-polaroid-close">✕</button>
+      <h3 id="modal-p-title" class="modal-p-title font-serif">Título</h3>
+      <p id="modal-p-note" class="modal-p-note font-editorial">Nota romántica...</p>
+      <div class="modal-p-signature">
+        <span class="font-script">Con todo mi amor para Briggite ❤️</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .gallery-section {
+    max-width: 1050px;
+    margin: 4rem auto;
+    padding: 2rem 1.5rem;
+    position: relative;
+    z-index: 10;
+  }
+
+  .section-title-wrap {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .sub-badge {
+    display: inline-block;
+    color: #ff9ebb;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-desc {
+    color: #d1b8c6;
+    font-size: 1.05rem;
+  }
+
+  .polaroid-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 2.5rem;
+    padding: 1rem 0.5rem;
+  }
+
+  .polaroid-item {
+    background: #fffdf9;
+    padding: 14px 14px 22px 14px;
+    border-radius: 6px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+    user-select: none;
+  }
+
+  .polaroid-item:hover {
+    transform: translateY(-12px) rotate(0deg) scale(1.05) !important;
+    box-shadow: 0 22px 50px rgba(255, 94, 142, 0.35);
+    z-index: 10;
+  }
+
+  /* Tape effect at the top */
+  .tape-strip {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 65px;
+    height: 24px;
+    background: rgba(255, 224, 178, 0.7);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border-left: 2px dashed rgba(255, 255, 255, 0.4);
+    border-right: 2px dashed rgba(255, 255, 255, 0.4);
+    z-index: 5;
+  }
+
+  .tilt-left { transform: rotate(-3deg); }
+  .tilt-right { transform: rotate(3deg); }
+  .tilt-left-sm { transform: rotate(-2deg); }
+  .tilt-right-sm { transform: rotate(2deg); }
+
+  .polaroid-photo {
+    width: 100%;
+    aspect-ratio: 4 / 3.2;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #15061c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .scene-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .polaroid-caption {
+    text-align: center;
+    margin-top: 14px;
+    color: #4a253a;
+    font-size: 1.45rem;
+    line-height: 1.2;
+  }
+
+  /* Lightbox Modal */
+  .polaroid-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    padding: 1.5rem;
+  }
+
+  .polaroid-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .modal-polaroid-box {
+    max-width: 480px;
+    width: 100%;
+    background: #fffdf9;
+    color: #3b1d30;
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    position: relative;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 30px rgba(255, 94, 142, 0.4);
+    text-align: center;
+    transform: scale(0.9);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .polaroid-modal.active .modal-polaroid-box {
+    transform: scale(1);
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    background: #fce4ec;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    color: #ad1457;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .modal-p-title {
+    font-size: 1.8rem;
+    color: #9c1543;
+    margin-bottom: 0.8rem;
+  }
+
+  .modal-p-note {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: #4a3443;
+    margin-bottom: 1.8rem;
+  }
+
+  .modal-p-signature {
+    border-top: 1px dashed #f48fb1;
+    padding-top: 1rem;
+    font-size: 1.6rem;
+    color: #c2185b;
+  }
+</style>
+
+<script>
+  import confetti from 'canvas-confetti';
+
+  function initPolaroidGallery() {
+    const items = document.querySelectorAll('.polaroid-item');
+    const modal = document.getElementById('polaroid-modal');
+    const closeBtn = document.getElementById('modal-polaroid-close');
+    const titleEl = document.getElementById('modal-p-title');
+    const noteEl = document.getElementById('modal-p-note');
+
+    if (!modal || !closeBtn || !titleEl || !noteEl) return;
+
+    items.forEach((item) => {
+      item.addEventListener('click', () => {
+        const title = item.getAttribute('data-title') || 'Recuerdo';
+        const note = item.getAttribute('data-note') || '';
+
+        titleEl.textContent = title;
+        noteEl.textContent = note;
+        modal.classList.add('active');
+
+        confetti({
+          particleCount: 25,
+          spread: 60,
+          origin: { y: 0.6 },
+          colors: ['#ff80ab', '#ffd54f', '#ffffff']
+        });
+      });
+    });
+
+    function closeModal() {
+      modal?.classList.remove('active');
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPolaroidGallery);
+  } else {
+    initPolaroidGallery();
+  }
+</script>

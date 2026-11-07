@@ -1,0 +1,274 @@
+---
+// MusicPlayer.astro - Ambient romantic music box powered by Web Audio API
+---
+
+<div class="music-player-widget" id="music-player">
+  <button class="music-toggle-btn" id="music-toggle-btn" aria-label="Reproducir melodía romántica">
+    <div class="vinyl-disc" id="vinyl-disc">
+      <div class="vinyl-grooves"></div>
+      <div class="vinyl-center">
+        <span class="vinyl-heart">❤️</span>
+      </div>
+    </div>
+
+    <div class="music-info">
+      <span class="music-label">Nuestra Melodía</span>
+      <span class="music-status" id="music-status">Toca para escuchar 🎵</span>
+    </div>
+
+    <div class="equalizer-waves" id="equalizer-waves">
+      <span class="bar bar-1"></span>
+      <span class="bar bar-2"></span>
+      <span class="bar bar-3"></span>
+      <span class="bar bar-4"></span>
+    </div>
+  </button>
+</div>
+
+<style>
+  .music-player-widget {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 100;
+  }
+
+  .music-toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    background: rgba(30, 8, 38, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1.5px solid rgba(255, 94, 142, 0.4);
+    border-radius: 50px;
+    padding: 0.5rem 1.1rem 0.5rem 0.5rem;
+    cursor: pointer;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 94, 142, 0.25);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .music-toggle-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    border-color: #ff5e8e;
+    box-shadow: 0 12px 35px rgba(255, 94, 142, 0.45);
+  }
+
+  /* Vinyl Record */
+  .vinyl-disc {
+    width: 44px;
+    height: 44px;
+    background: radial-gradient(circle, #333 20%, #111 70%, #000 100%);
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  }
+
+  .vinyl-disc.playing {
+    animation: rotateVinyl 4s linear infinite;
+  }
+
+  @keyframes rotateVinyl {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .vinyl-center {
+    width: 18px;
+    height: 18px;
+    background: #ff5e8e;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #fff;
+  }
+
+  .vinyl-heart {
+    font-size: 0.55rem;
+  }
+
+  .music-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .music-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #fff2f6;
+    letter-spacing: 0.5px;
+  }
+
+  .music-status {
+    font-size: 0.7rem;
+    color: #ffb8cf;
+  }
+
+  /* Equalizer Animation */
+  .equalizer-waves {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 16px;
+    padding-left: 4px;
+  }
+
+  .bar {
+    width: 3px;
+    background: #ff5e8e;
+    border-radius: 2px;
+    height: 4px;
+    transition: height 0.2s ease;
+  }
+
+  .music-player-widget.playing .bar-1 { animation: eqBar 0.9s infinite ease-in-out alternate; }
+  .music-player-widget.playing .bar-2 { animation: eqBar 0.7s infinite ease-in-out alternate 0.2s; }
+  .music-player-widget.playing .bar-3 { animation: eqBar 1.1s infinite ease-in-out alternate 0.4s; }
+  .music-player-widget.playing .bar-4 { animation: eqBar 0.8s infinite ease-in-out alternate 0.1s; }
+
+  @keyframes eqBar {
+    0% { height: 4px; }
+    100% { height: 16px; }
+  }
+
+  @media (max-width: 640px) {
+    .music-player-widget {
+      bottom: 16px;
+      right: 16px;
+    }
+  }
+</style>
+
+<script>
+  function initMusicPlayer() {
+    const playerWidget = document.getElementById('music-player');
+    const toggleBtn = document.getElementById('music-toggle-btn');
+    const vinylDisc = document.getElementById('vinyl-disc');
+    const statusText = document.getElementById('music-status');
+
+    if (!toggleBtn || !playerWidget || !vinylDisc || !statusText) return;
+
+    let isPlaying = false;
+    let audioCtx: AudioContext | null = null;
+    let sequenceTimer: number | null = null;
+
+    // Romantic music box melody (frequencies in Hz)
+    // Sweet, gentle lullaby arpeggios
+    const melodyNotes = [
+      // Phrase 1 (D major - A major - B minor - F# minor)
+      { note: 587.33, dur: 0.6 }, // D5
+      { note: 739.99, dur: 0.6 }, // F#5
+      { note: 880.00, dur: 0.8 }, // A5
+      { note: 739.99, dur: 0.6 },
+      { note: 659.25, dur: 0.6 }, // E5
+      { note: 880.00, dur: 0.8 }, // A5
+      { note: 587.33, dur: 0.6 }, // D5
+      { note: 987.77, dur: 0.9 }, // B5
+
+      // Phrase 2 (G major - D major - G major - A7)
+      { note: 783.99, dur: 0.6 }, // G5
+      { note: 880.00, dur: 0.6 }, // A5
+      { note: 783.99, dur: 0.6 },
+      { note: 739.99, dur: 0.7 }, // F#5
+      { note: 659.25, dur: 0.6 }, // E5
+      { note: 587.33, dur: 0.8 }, // D5
+      { note: 659.25, dur: 0.6 }, // E5
+      { note: 880.00, dur: 1.2 }  // A5
+    ];
+
+    let noteIndex = 0;
+
+    function playMusicBoxNote(freq: number, duration: number) {
+      if (!audioCtx || !isPlaying) return;
+
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      // Sine wave with soft harmonic overtone for music-box chime quality
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+      // Bell-like strike and decay
+      gain.gain.setValueAtTime(0.0001, audioCtx.currentTime);
+      gain.gain.linearRampToValueAtTime(0.18, audioCtx.currentTime + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration * 1.6);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc.start();
+      osc.stop(audioCtx.currentTime + duration * 1.6);
+
+      // Soft bass accompaniment on root notes
+      if (noteIndex % 4 === 0) {
+        const bassOsc = audioCtx.createOscillator();
+        const bassGain = audioCtx.createGain();
+        bassOsc.type = 'triangle';
+        bassOsc.frequency.setValueAtTime(freq / 4, audioCtx.currentTime);
+        bassGain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+        bassGain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.2);
+        bassOsc.connect(bassGain);
+        bassGain.connect(audioCtx.destination);
+        bassOsc.start();
+        bassOsc.stop(audioCtx.currentTime + 1.2);
+      }
+    }
+
+    function playLoop() {
+      if (!isPlaying) return;
+      const current = melodyNotes[noteIndex];
+      playMusicBoxNote(current.note, current.dur);
+
+      noteIndex = (noteIndex + 1) % melodyNotes.length;
+      sequenceTimer = window.setTimeout(playLoop, current.dur * 650);
+    }
+
+    function startMusic() {
+      const AudioContextClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+      if (!audioCtx) {
+        audioCtx = new AudioContextClass();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+
+      isPlaying = true;
+      playerWidget?.classList.add('playing');
+      vinylDisc?.classList.add('playing');
+      statusText!.textContent = 'Sonando para ti ✨';
+      playLoop();
+    }
+
+    function stopMusic() {
+      isPlaying = false;
+      if (sequenceTimer) {
+        clearTimeout(sequenceTimer);
+        sequenceTimer = null;
+      }
+      playerWidget?.classList.remove('playing');
+      vinylDisc?.classList.remove('playing');
+      statusText!.textContent = 'Pausado ⏸️';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      if (isPlaying) {
+        stopMusic();
+      } else {
+        startMusic();
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMusicPlayer);
+  } else {
+    initMusicPlayer();
+  }
+</script>
+

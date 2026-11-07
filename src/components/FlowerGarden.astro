@@ -1,0 +1,822 @@
+---
+// FlowerGarden.astro - An interactive, animated romantic garden of blooming flowers
+---
+
+<div class="garden-container">
+  <!-- Glowing Title Card -->
+  <header class="hero-header">
+    <div class="love-badge">
+      <span class="sparkle-icon">✨</span>
+      <span>Un detalle desde el fondo de mi corazón</span>
+      <span class="sparkle-icon">✨</span>
+    </div>
+
+    <h1 class="main-title">
+      Te amo, <span class="highlight-name">Briggite</span>
+    </h1>
+
+    <p class="subtitle font-editorial">
+      "Entre millones de estrellas y en un mundo entero lleno de flores, <br class="hidden sm:inline" />
+      tú siempre serás mi más hermoso milagro."
+    </p>
+
+    <div class="interactive-hint">
+      <span>🌸 Toca o pasa el cursor sobre cada flor para descubrir un mensaje secreto 🌸</span>
+    </div>
+  </header>
+
+  <!-- Garden Window / Floral Terrace Frame -->
+  <div class="terrace-window">
+    <div class="glass-reflection"></div>
+    <div class="arch-overlay"></div>
+
+    <!-- Active Message Toast -->
+    <div id="flower-message-bubble" class="flower-message-bubble" aria-live="polite">
+      <span class="bubble-heart">💖</span>
+      <p id="flower-message-text">Toca cualquier flor de nuestro jardín...</p>
+    </div>
+
+    <!-- The Botanical Flower Bed -->
+    <div class="flowers-wrapper">
+
+      <!-- Flower 1: Velvet Rose of Deep Love -->
+      <div class="flower-item flower-1" data-message="Eres mi gran amor, la persona que le da sentido a mis días más bonitos." data-flower="Rosa Eterna 🌹">
+        <div class="flower-sparkles"></div>
+        <div class="flower-head">
+          <div class="petal-layer layer-back">
+            <span class="petal p-1"></span>
+            <span class="petal p-2"></span>
+            <span class="petal p-3"></span>
+            <span class="petal p-4"></span>
+          </div>
+          <div class="petal-layer layer-mid">
+            <span class="petal p-5"></span>
+            <span class="petal p-6"></span>
+            <span class="petal p-7"></span>
+            <span class="petal p-8"></span>
+          </div>
+          <div class="flower-core">
+            <div class="rose-spiral"></div>
+          </div>
+        </div>
+        <div class="flower-stem">
+          <div class="leaf leaf-left"></div>
+          <div class="leaf leaf-right"></div>
+          <div class="stem-line"></div>
+        </div>
+        <span class="flower-tag">Rosa Eterna</span>
+      </div>
+
+      <!-- Flower 2: Pink Romantic Peony -->
+      <div class="flower-item flower-2" data-message="Amo tu ternura infinita, tu voz suave y la forma tan dulce en la que me miras." data-flower="Peonía Rosa 🌸">
+        <div class="flower-sparkles"></div>
+        <div class="flower-head">
+          <div class="petal-layer layer-back">
+            <span class="petal p-1"></span>
+            <span class="petal p-2"></span>
+            <span class="petal p-3"></span>
+            <span class="petal p-4"></span>
+            <span class="petal p-5"></span>
+          </div>
+          <div class="petal-layer layer-mid">
+            <span class="petal p-6"></span>
+            <span class="petal p-7"></span>
+            <span class="petal p-8"></span>
+          </div>
+          <div class="flower-core peony-center"></div>
+        </div>
+        <div class="flower-stem">
+          <div class="leaf leaf-left"></div>
+          <div class="leaf leaf-right"></div>
+          <div class="stem-line"></div>
+        </div>
+        <span class="flower-tag">Ternura Pura</span>
+      </div>
+
+      <!-- Flower 3: Golden Sunflower (Centerpiece of Joy) -->
+      <div class="flower-item flower-3 featured" data-message="Iluminas mi vida como nadie más. A tu lado no existen los días grises." data-flower="Girasol Radiante 🌻">
+        <div class="flower-sparkles"></div>
+        <div class="flower-head">
+          <div class="sunflower-petals">
+            <span class="petal s-1"></span>
+            <span class="petal s-2"></span>
+            <span class="petal s-3"></span>
+            <span class="petal s-4"></span>
+            <span class="petal s-5"></span>
+            <span class="petal s-6"></span>
+            <span class="petal s-7"></span>
+            <span class="petal s-8"></span>
+            <span class="petal s-9"></span>
+            <span class="petal s-10"></span>
+            <span class="petal s-11"></span>
+            <span class="petal s-12"></span>
+          </div>
+          <div class="sunflower-center">
+            <div class="seeds-pattern"></div>
+          </div>
+        </div>
+        <div class="flower-stem">
+          <div class="leaf leaf-left"></div>
+          <div class="leaf leaf-right"></div>
+          <div class="stem-line"></div>
+        </div>
+        <span class="flower-tag">Mi Luz</span>
+      </div>
+
+      <!-- Flower 4: Royal Orchid (Delicacy & Beauty) -->
+      <div class="flower-item flower-4" data-message="Amo tu inteligencia, tu encanto y esa magia única que sólo tú tienes." data-flower="Orquídea Mágica 💜">
+        <div class="flower-sparkles"></div>
+        <div class="flower-head">
+          <div class="orchid-petals">
+            <span class="petal o-top"></span>
+            <span class="petal o-left"></span>
+            <span class="petal o-right"></span>
+            <span class="petal o-lip"></span>
+          </div>
+          <div class="orchid-center"></div>
+        </div>
+        <div class="flower-stem">
+          <div class="leaf leaf-left"></div>
+          <div class="leaf leaf-right"></div>
+          <div class="stem-line"></div>
+        </div>
+        <span class="flower-tag">Magia Única</span>
+      </div>
+
+      <!-- Flower 5: Scarlet Tulip of Passion -->
+      <div class="flower-item flower-5" data-message="Prometo cuidarte, valorar cada segundo contigo y enamorarte todos los días." data-flower="Tulipán Escarlata 🌷">
+        <div class="flower-sparkles"></div>
+        <div class="flower-head">
+          <div class="tulip-cup">
+            <span class="tulip-petal t-left"></span>
+            <span class="tulip-petal t-center"></span>
+            <span class="tulip-petal t-right"></span>
+          </div>
+        </div>
+        <div class="flower-stem">
+          <div class="leaf leaf-left"></div>
+          <div class="leaf leaf-right"></div>
+          <div class="stem-line"></div>
+        </div>
+        <span class="flower-tag">Amor Verdadero</span>
+      </div>
+
+    </div>
+
+    <!-- Soft glowing hill & grass -->
+    <div class="garden-bed">
+      <div class="bed-glow"></div>
+      <div class="soil-curve"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .garden-container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 1.5rem;
+    position: relative;
+    z-index: 10;
+  }
+
+  /* Header Styles */
+  .hero-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .love-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1.2rem;
+    background: rgba(255, 94, 142, 0.15);
+    border: 1px solid rgba(255, 94, 142, 0.4);
+    border-radius: 9999px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #ffb3c6;
+    margin-bottom: 1.25rem;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 15px rgba(255, 94, 142, 0.2);
+  }
+
+  .sparkle-icon {
+    font-size: 0.95rem;
+    animation: softPulse 2s infinite ease-in-out;
+  }
+
+  .main-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(3.2rem, 8vw, 6.5rem);
+    font-weight: 400;
+    line-height: 1.1;
+    color: #ffffff;
+    text-shadow: 0 0 25px rgba(255, 94, 142, 0.5), 0 0 50px rgba(255, 94, 142, 0.25);
+    margin-bottom: 0.8rem;
+  }
+
+  .highlight-name {
+    background: linear-gradient(135deg, #ffeef4 0%, #ff85ad 50%, #f7d070 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    filter: drop-shadow(0 0 15px rgba(255, 133, 173, 0.6));
+    animation: gentleWiggle 4s ease-in-out infinite;
+  }
+
+  @keyframes gentleWiggle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+  }
+
+  .subtitle {
+    font-size: clamp(1.15rem, 2.8vw, 1.65rem);
+    line-height: 1.5;
+    color: #f7d4e5;
+    max-width: 680px;
+    margin: 0 auto 1.5rem;
+    font-style: italic;
+    opacity: 0.95;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  }
+
+  .interactive-hint {
+    font-size: 0.88rem;
+    color: #ffd080;
+    background: rgba(0, 0, 0, 0.35);
+    display: inline-block;
+    padding: 0.35rem 1rem;
+    border-radius: 20px;
+    border: 1px dashed rgba(255, 208, 128, 0.4);
+    letter-spacing: 0.5px;
+  }
+
+  /* Terrace Window / Garden Frame */
+  .terrace-window {
+    position: relative;
+    background: radial-gradient(ellipse at 50% 90%, rgba(68, 19, 65, 0.5) 0%, rgba(20, 5, 26, 0.8) 60%, rgba(10, 2, 14, 0.95) 100%);
+    border: 2px solid rgba(255, 182, 193, 0.25);
+    border-radius: 36px;
+    padding: 3rem 1.5rem 0rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), inset 0 0 40px rgba(255, 94, 142, 0.15);
+    overflow: hidden;
+    backdrop-filter: blur(14px);
+    margin-bottom: 2rem;
+  }
+
+  .glass-reflection {
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(115deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.08) 30%, transparent 60%);
+    pointer-events: none;
+  }
+
+  /* Message Toast Above Flowers */
+  .flower-message-bubble {
+    background: rgba(25, 7, 33, 0.9);
+    border: 1.5px solid #ff709b;
+    border-radius: 20px;
+    padding: 0.85rem 1.5rem;
+    max-width: 550px;
+    margin: 0 auto 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    box-shadow: 0 10px 30px rgba(255, 112, 155, 0.3);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: translateY(0);
+    z-index: 5;
+  }
+
+  .bubble-heart {
+    font-size: 1.6rem;
+    animation: softPulse 1.5s infinite;
+  }
+
+  #flower-message-text {
+    font-size: 1rem;
+    color: #fff2f6;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  /* Flowers Container */
+  .flowers-wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    min-height: 380px;
+    position: relative;
+    z-index: 3;
+    padding-bottom: 40px;
+  }
+
+  .flower-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.4s ease;
+    transform-origin: bottom center;
+    user-select: none;
+  }
+
+  .flower-item:hover {
+    transform: scale(1.1);
+  }
+
+  .flower-tag {
+    margin-top: 10px;
+    font-size: 0.75rem;
+    padding: 3px 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #ffc9dc;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+  }
+
+  .flower-item:hover .flower-tag {
+    background: #ff5e8e;
+    color: #fff;
+    box-shadow: 0 0 12px rgba(255, 94, 142, 0.8);
+  }
+
+  /* Stems and Leaves */
+  .flower-stem {
+    position: relative;
+    width: 6px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .stem-line {
+    width: 5px;
+    background: linear-gradient(to bottom, #72b350, #38761d);
+    border-radius: 4px;
+    box-shadow: 0 0 6px rgba(56, 118, 29, 0.6);
+  }
+
+  .flower-1 .stem-line { height: 180px; }
+  .flower-2 .stem-line { height: 160px; }
+  .flower-3 .stem-line { height: 210px; }
+  .flower-4 .stem-line { height: 170px; }
+  .flower-5 .stem-line { height: 190px; }
+
+  .leaf {
+    position: absolute;
+    width: 28px;
+    height: 14px;
+    background: linear-gradient(135deg, #7cb342, #4b830d);
+    border-radius: 50px 0 50px 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  .leaf-left {
+    left: -24px;
+    top: 45%;
+    transform: rotate(-25deg);
+    border-radius: 0 50px 0 50px;
+  }
+
+  .leaf-right {
+    right: -24px;
+    top: 60%;
+    transform: rotate(20deg);
+  }
+
+  /* Flower Sway Keyframes */
+  @keyframes sway1 {
+    0%, 100% { transform: rotate(-2deg); }
+    50% { transform: rotate(3deg); }
+  }
+  @keyframes sway2 {
+    0%, 100% { transform: rotate(3deg); }
+    50% { transform: rotate(-2deg); }
+  }
+  @keyframes swayCenter {
+    0%, 100% { transform: rotate(-1.5deg) scale(1); }
+    50% { transform: rotate(1.5deg) scale(1.02); }
+  }
+
+  .flower-1 { animation: sway1 5s ease-in-out infinite; }
+  .flower-2 { animation: sway2 4.2s ease-in-out infinite 0.5s; }
+  .flower-3 { animation: swayCenter 6s ease-in-out infinite 1s; }
+  .flower-4 { animation: sway1 4.7s ease-in-out infinite 1.5s; }
+  .flower-5 { animation: sway2 5.3s ease-in-out infinite 0.8s; }
+
+  /* FLOWER 1: RED ROSE */
+  .flower-1 .flower-head {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .flower-1 .petal {
+    position: absolute;
+    border-radius: 50% 50% 45% 45%;
+    background: radial-gradient(circle at 35% 35%, #ff2a6d, #b3003b 80%, #66001f);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4), inset 0 0 8px rgba(255, 120, 160, 0.5);
+    transition: transform 0.4s ease;
+  }
+
+  .flower-1 .layer-back .petal {
+    width: 44px;
+    height: 52px;
+  }
+  .flower-1 .p-1 { transform: translate(-14px, -14px) rotate(-35deg); }
+  .flower-1 .p-2 { transform: translate(14px, -14px) rotate(35deg); }
+  .flower-1 .p-3 { transform: translate(-14px, 14px) rotate(-110deg); }
+  .flower-1 .p-4 { transform: translate(14px, 14px) rotate(110deg); }
+
+  .flower-1 .layer-mid .petal {
+    width: 38px;
+    height: 44px;
+    background: radial-gradient(circle at 35% 35%, #ff4d88, #cc0044);
+  }
+  .flower-1 .p-5 { transform: translate(0, -16px) rotate(0deg); }
+  .flower-1 .p-6 { transform: translate(16px, 0) rotate(90deg); }
+  .flower-1 .p-7 { transform: translate(0, 16px) rotate(180deg); }
+  .flower-1 .p-8 { transform: translate(-16px, 0) rotate(270deg); }
+
+  .flower-1 .flower-core {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #e6004c 30%, #800020 90%);
+    box-shadow: inset 0 0 6px #33000d;
+    z-index: 4;
+  }
+
+  .rose-spiral {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2.5px solid #ff99bb;
+    border-top-color: transparent;
+    transform: rotate(45deg);
+  }
+
+  /* FLOWER 2: PINK PEONY */
+  .flower-2 .flower-head {
+    position: relative;
+    width: 76px;
+    height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .flower-2 .petal {
+    position: absolute;
+    border-radius: 50% 50% 40% 40%;
+    background: radial-gradient(circle at 40% 30%, #ffc2d6, #ff6b9d 70%, #d42b6b);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+  }
+
+  .flower-2 .layer-back .petal {
+    width: 38px;
+    height: 46px;
+  }
+  .flower-2 .p-1 { transform: rotate(0deg) translateY(-18px); }
+  .flower-2 .p-2 { transform: rotate(72deg) translateY(-18px); }
+  .flower-2 .p-3 { transform: rotate(144deg) translateY(-18px); }
+  .flower-2 .p-4 { transform: rotate(216deg) translateY(-18px); }
+  .flower-2 .p-5 { transform: rotate(288deg) translateY(-18px); }
+
+  .flower-2 .layer-mid .petal {
+    width: 32px;
+    height: 38px;
+    background: radial-gradient(circle at 40% 30%, #ffe6f0, #ff80ab);
+  }
+  .flower-2 .p-6 { transform: rotate(36deg) translateY(-12px); }
+  .flower-2 .p-7 { transform: rotate(156deg) translateY(-12px); }
+  .flower-2 .p-8 { transform: rotate(276deg) translateY(-12px); }
+
+  .peony-center {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ffe066 30%, #e6a800 80%);
+    box-shadow: 0 0 10px rgba(255, 224, 102, 0.8);
+    z-index: 4;
+  }
+
+  /* FLOWER 3: SUNFLOWER (FEATURED) */
+  .flower-3 .flower-head {
+    position: relative;
+    width: 104px;
+    height: 104px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sunflower-petals {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sunflower-petals .petal {
+    position: absolute;
+    width: 22px;
+    height: 46px;
+    background: linear-gradient(to top, #e67e00, #ffc107 40%, #fff176);
+    border-radius: 50% 50% 20% 20%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  .s-1  { transform: rotate(0deg) translateY(-26px); }
+  .s-2  { transform: rotate(30deg) translateY(-26px); }
+  .s-3  { transform: rotate(60deg) translateY(-26px); }
+  .s-4  { transform: rotate(90deg) translateY(-26px); }
+  .s-5  { transform: rotate(120deg) translateY(-26px); }
+  .s-6  { transform: rotate(150deg) translateY(-26px); }
+  .s-7  { transform: rotate(180deg) translateY(-26px); }
+  .s-8  { transform: rotate(210deg) translateY(-26px); }
+  .s-9  { transform: rotate(240deg) translateY(-26px); }
+  .s-10 { transform: rotate(270deg) translateY(-26px); }
+  .s-11 { transform: rotate(300deg) translateY(-26px); }
+  .s-12 { transform: rotate(330deg) translateY(-26px); }
+
+  .sunflower-center {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #4a2810 40%, #291203 90%);
+    border: 3px dashed #8d501e;
+    box-shadow: inset 0 0 10px #000, 0 0 15px rgba(255, 193, 7, 0.4);
+    z-index: 5;
+  }
+
+  /* FLOWER 4: PURPLE ORCHID */
+  .flower-4 .flower-head {
+    position: relative;
+    width: 82px;
+    height: 82px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .orchid-petals .petal {
+    position: absolute;
+    background: radial-gradient(circle at 40% 40%, #e1bee7, #ab47bc 70%, #6a1b9a);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .o-top {
+    width: 32px;
+    height: 44px;
+    border-radius: 50% 50% 30% 30%;
+    transform: translateY(-16px);
+  }
+  .o-left {
+    width: 40px;
+    height: 30px;
+    border-radius: 50% 30% 30% 50%;
+    transform: translateX(-18px) rotate(-15deg);
+  }
+  .o-right {
+    width: 40px;
+    height: 30px;
+    border-radius: 30% 50% 50% 30%;
+    transform: translateX(18px) rotate(15deg);
+  }
+  .o-lip {
+    width: 28px;
+    height: 34px;
+    background: radial-gradient(circle, #f48fb1, #ad1457);
+    border-radius: 30% 30% 50% 50%;
+    transform: translateY(14px);
+    z-index: 3;
+  }
+
+  .orchid-center {
+    width: 14px;
+    height: 14px;
+    background: #fff59d;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #ffeb3b;
+    z-index: 6;
+  }
+
+  /* FLOWER 5: SCARLET TULIP */
+  .flower-5 .flower-head {
+    position: relative;
+    width: 68px;
+    height: 74px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tulip-cup {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .tulip-petal {
+    position: absolute;
+    bottom: 0;
+  }
+
+  .t-center {
+    width: 42px;
+    height: 64px;
+    left: 13px;
+    background: linear-gradient(to top, #b71c1c, #e53935 60%, #ff8a80);
+    border-radius: 20px 20px 40px 40px;
+    z-index: 2;
+  }
+
+  .t-left {
+    width: 34px;
+    height: 58px;
+    left: 2px;
+    background: linear-gradient(135deg, #d32f2f, #880e4e);
+    border-radius: 35px 15px 35px 35px;
+    transform: rotate(-10deg);
+    z-index: 3;
+  }
+
+  .t-right {
+    width: 34px;
+    height: 58px;
+    right: 2px;
+    background: linear-gradient(225deg, #f44336, #880e4e);
+    border-radius: 15px 35px 35px 35px;
+    transform: rotate(10deg);
+    z-index: 3;
+  }
+
+  /* Garden Bed / Soil Curve */
+  .garden-bed {
+    position: relative;
+    width: 100%;
+    height: 48px;
+    z-index: 4;
+  }
+
+  .soil-curve {
+    width: 110%;
+    margin-left: -5%;
+    height: 60px;
+    background: linear-gradient(to top, #0f0314, #270f20 40%, #3e1b30);
+    border-radius: 50% 50% 0 0;
+    box-shadow: 0 -5px 25px rgba(255, 94, 142, 0.2);
+  }
+
+  .bed-glow {
+    position: absolute;
+    top: -20px;
+    left: 10%;
+    width: 80%;
+    height: 40px;
+    background: radial-gradient(ellipse at center, rgba(255, 94, 142, 0.35) 0%, transparent 70%);
+    filter: blur(10px);
+    pointer-events: none;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 640px) {
+    .flowers-wrapper {
+      min-height: 290px;
+      padding-bottom: 25px;
+    }
+    .flower-1 .stem-line { height: 130px; }
+    .flower-2 .stem-line { height: 115px; }
+    .flower-3 .stem-line { height: 155px; }
+    .flower-4 .stem-line { height: 120px; }
+    .flower-5 .stem-line { height: 135px; }
+
+    .flower-1 .flower-head { transform: scale(0.85); }
+    .flower-2 .flower-head { transform: scale(0.8); }
+    .flower-3 .flower-head { transform: scale(0.9); }
+    .flower-4 .flower-head { transform: scale(0.8); }
+    .flower-5 .flower-head { transform: scale(0.85); }
+
+    .flower-tag {
+      font-size: 0.65rem;
+      padding: 2px 6px;
+    }
+  }
+</style>
+
+<script>
+  import confetti from 'canvas-confetti';
+
+  function initFlowerInteractions() {
+    const flowerItems = document.querySelectorAll('.flower-item');
+    const bubble = document.getElementById('flower-message-bubble');
+    const bubbleText = document.getElementById('flower-message-text');
+
+    if (!bubble || !bubbleText) return;
+
+    // Web Audio gentle chime
+    let audioCtx: AudioContext | null = null;
+    function playChime(freq = 523.25) {
+      try {
+        if (!audioCtx) {
+          const AudioContextClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+          audioCtx = new AudioContextClass();
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(freq * 1.5, audioCtx.currentTime + 0.4);
+
+        gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.7);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.7);
+      } catch {
+        // Audio might be blocked until user gesture, safe to ignore
+      }
+    }
+
+    const noteFreqs = [523.25, 587.33, 659.25, 783.99, 880.00];
+
+    flowerItems.forEach((flower, index) => {
+      const showFlowerMessage = (e?: Event) => {
+        const msg = flower.getAttribute('data-message');
+        const flowerName = flower.getAttribute('data-flower') || 'Flor';
+
+        if (msg) {
+          bubbleText.innerHTML = `<strong>${flowerName}:</strong> ${msg}`;
+          bubble.style.transform = 'translateY(-6px) scale(1.02)';
+          bubble.style.borderColor = '#ffd080';
+          bubble.style.boxShadow = '0 10px 35px rgba(255, 208, 128, 0.4)';
+
+          setTimeout(() => {
+            bubble.style.transform = 'translateY(0) scale(1)';
+            bubble.style.borderColor = '#ff709b';
+            bubble.style.boxShadow = '0 10px 30px rgba(255, 112, 155, 0.3)';
+          }, 400);
+        }
+
+        playChime(noteFreqs[index % noteFreqs.length]);
+
+        // Launch mini heart confetti
+        if (e && window.innerWidth) {
+          const rect = flower.getBoundingClientRect();
+          const x = (rect.left + rect.width / 2) / window.innerWidth;
+          const y = (rect.top + rect.height / 3) / window.innerHeight;
+
+          confetti({
+            particleCount: 15,
+            spread: 50,
+            origin: { x, y },
+            colors: ['#ff5e8e', '#ffd1df', '#f7d070', '#ffffff'],
+            shapes: ['circle'],
+            scalar: 0.8
+          });
+        }
+      };
+
+      flower.addEventListener('click', showFlowerMessage);
+      flower.addEventListener('mouseenter', () => {
+        const msg = flower.getAttribute('data-message');
+        const flowerName = flower.getAttribute('data-flower') || 'Flor';
+        if (msg) {
+          bubbleText.innerHTML = `<strong>${flowerName}:</strong> ${msg}`;
+        }
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFlowerInteractions);
+  } else {
+    initFlowerInteractions();
+  }
+</script>
+
